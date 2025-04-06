@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - FinAssist AI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: rgba(0, 0, 0, 0.9);
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #4CAF50;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Signup Form Container */
+        .signup-container {
+            max-width: 600px;
+            margin: 5rem auto;
+            padding: 2rem;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .signup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .signup-header h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .signup-header p {
+            color: #666;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: bold;
+        }
+
+        input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+        }
+
+        input:focus {
+            border-color: #4CAF50;
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+
+        .form-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+
+        .form-footer p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .form-footer a {
+            color: #4CAF50;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .form-footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-top: 1rem;
+        }
+
+        /* Login Modal */
+        .login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 200;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            width: 100%;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+
+        .modal-header h2 {
+            font-size: 1.8rem;
+            color: #333;
+        }
+
+        .close-btn {
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: #666;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+            }
+
+            .signup-container {
+                margin: 3rem 1rem;
+                padding: 1.5rem;
+            }
+
+            .signup-header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header (Navigation) -->
+    <header>
+        <a href="home.html" class="logo">Fin<span>Assist</span></a>
+        <nav>
+            <ul>
+                <li><a href="home.html#intro">About Us</a></li>
+                <li><a href="home.html#features">Features</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Signup Form Section -->
+    <section class="signup-section">
+        <div class="signup-container">
+            <div class="signup-header">
+                <h1>Create Your Account</h1>
+                <p>Join FinAssist AI to start your journey to financial success</p>
+            </div>
+
+            <form id="signup-form">
+                <div class="form-group">
+                    <label for="fullname">Full Name</label>
+                    <input type="text" id="fullname" name="fullname" placeholder="Enter your full name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Create a password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm your password" required>
+                </div>
+
+                <button type="submit" class="btn">Sign Up</button>
+
+                <div class="form-footer">
+                    <p>Already have an account? <a id="login-link">Login</a></p>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <!-- Login Modal -->
+    <div class="login-modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Login</h2>
+                <button class="close-btn" id="close-modal">&times;</button>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="login-email">Email Address</label>
+                    <input type="email" id="login-email" name="login-email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="login-password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="btn">Login</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">Fin<span>Assist</span></div>
+        <p>&copy; 2025 FinAssist AI. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Form submission handler
+        document.getElementById('signup-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const fullname = document.getElementById('fullname').value;
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    const confirmPassword = document.getElementById('confirm-password').value;
+
+    if (password !== confirmPassword) {
+        alert('Passwords do not match. Please try again.');
+        return;
+    }
+
+    fetch('https://fin-assist-backend.onrender.com/auth/signup', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            name: fullname,
+            email: email,
+            password: password
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "Signup successful") {
+            alert("Signup successful! Redirecting to chatbot...");
+            window.location.href = 'chatbot.html';
+        } else {
+            alert(data.message || "Signup failed");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Something went wrong during signup.");
+    });
+});
+
+
+        // Login modal functionality
+        const loginLink = document.getElementById('login-link');
+        const loginModal = document.getElementById('login-modal');
+        const closeModal = document.getElementById('close-modal');
+
+        loginLink.addEventListener('click', function() {
+            loginModal.classList.add('active');
+        });
+
+        closeModal.addEventListener('click', function() {
+            loginModal.classList.remove('active');
+        });
+
+        // Close modal when clicking outside
+        window.addEventListener('click', function(e) {
+            if (e.target === loginModal) {
+                loginModal.classList.remove('active');
+            }
+        });
+
+        // Login form submission
+      // Login form submission with backend call
+document.getElementById('login-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const email = document.getElementById('login-email').value;
+    const password = document.getElementById('login-password').value;
+
+    fetch('https://fin-assist-backend.onrender.com/auth/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+            email,
+            password
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.message === "Login successful") {
+            alert("Login successful! Redirecting to chatbot...");
+            window.location.href = 'chatbot.html';
+        } else {
+            alert(data.message || "Login failed");
+        }
+    })
+    .catch(error => {
+        console.error("Error:", error);
+        alert("Something went wrong during login.");
+    });
+});
+
+    </script>
+</body>
+</html>
