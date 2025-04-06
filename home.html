@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinAssist AI - Your Financial Assistant</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+
+        .logo {
+            color: #fff;
+            font-size: 1.8rem;
+            font-weight: bold;
+        }
+
+        .logo span {
+            color: #4CAF50;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 2rem;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: #4CAF50;
+        }
+
+        /* Hero Section with Background Video */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: -1;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 2rem;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #4CAF50;
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #45a049;
+        }
+
+        /* Introduction Section */
+        .intro {
+            padding: 5rem 2rem;
+            background-color: #f9f9f9;
+            text-align: center;
+        }
+
+        .intro-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: #333;
+        }
+
+        .intro p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 2rem;
+            background-color: #fff;
+        }
+
+        .features-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .feature-card {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+        }
+
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        /* Sign Up CTA Section */
+        .signup-cta {
+            padding: 5rem 2rem;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+
+        .signup-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .signup-cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .signup-cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background-color: white;
+            color: #4CAF50;
+        }
+
+        .btn-white:hover {
+            background-color: #f1f1f1;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            margin-top: 1rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            header {
+                padding: 1rem;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            nav ul li {
+                margin-left: 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+        }
+  
+    </style>
+</head>
+
+<body>
+    <!-- Header (Navigation) -->
+    <header>
+        <div class="logo">Fin<span>Assist</span></div>
+        <nav>
+            <ul>
+                <li><a href="#intro">About Us</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="signup.html">Sign Up</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section with Background Video -->
+    <section class="hero">
+        <video class="hero-video" autoplay muted loop>
+            <!-- <source src="https://drive.google.com/file/d/1_rcqdxZA7h3ntahFt4CuVuWpkmN7QspU/view?usp=drive_link" type="video/mp4"> -->
+            <source src="https://drive.google.com/uc?export=download&id=1_rcqdxZA7h3ntahFt4CuVuWpkmN7QspU" type='video/mp4'>
+            Your browser does not support the video tag.
+        </video>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Smart Financial Assistance Powered by AI</h1>
+            <p>Revolutionize your financial journey with our AI-powered assistant that provides personalized advice, investment strategies, and financial education.</p>
+            <a href="signup.html" class="btn">Get Started Now</a>
+        </div>
+    </section>
+
+    <!-- Introduction Section -->
+    <section id="intro" class="intro">
+        <div class="intro-container">
+            <h2 class="section-title">About FinAssist AI</h2>
+            <p>FinAssist AI is an innovative platform that leverages the power of artificial intelligence to democratize financial advice and education. Our mission is to help everyone achieve financial independence through smart, personalized guidance.</p>
+            <p>Whether you're just starting your financial journey or looking to optimize your investment portfolio, our AI assistant is designed to provide you with relevant, actionable insights tailored to your unique financial situation.</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="features-container">
+            <h2 class="section-title">Our Features</h2>
+            <p>Discover how FinAssist AI can transform your financial life with these powerful features</p>
+            
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">💰</div>
+                    <h3>Investment Advice</h3>
+                    <p>Receive personalized investment recommendations based on your risk tolerance, goals, and market conditions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📈</div>
+                    <h3>Stock Analysis</h3>
+                    <p>Get AI-powered stock recommendations and market analyses to make informed investment decisions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📚</div>
+                    <h3>Financial Literacy</h3>
+                    <p>Access a wealth of educational content to improve your understanding of finance and investment concepts.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🎯</div>
+                    <h3>Goal Planning</h3>
+                    <p>Set financial goals and get step-by-step guidance on how to achieve them effectively.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>Portfolio Management</h3>
+                    <p>Track and optimize your investment portfolio with AI-driven insights and rebalancing suggestions.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <div class="feature-icon">🤖</div>
+                    <h3>AI Chatbot</h3>
+                    <p>Chat with our intelligent assistant anytime to get answers to your financial questions instantly.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sign Up CTA Section -->
+    <section class="signup-cta">
+        <div class="signup-container">
+            <h2>Start Your Financial Journey Today</h2>
+            <p>Join thousands of users who are taking control of their financial future with FinAssist AI.</p>
+            <a href="signup.html" class="btn btn-white">Sign Up Now</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="logo">Fin<span>Assist</span></div>
+        <p>&copy; 2025 FinAssist AI. All rights reserved.</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 70, // Offset for fixed header
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Fixed header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.9)';
+            } else {
+                header.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+            }
+        });
+    </script>
+</body>
+</html>
